@@ -1,10 +1,9 @@
 $(document).ready(function() {
 
+    var peer_id = $.url().param('id');
     var peer = new Peer({key: 'lwjd5qra8257b9'});
 
     peer.on('open', function(id) {
-
-        console.log('My peer ID is: ' + id);
 
         $('#the_link').prop('href', 'http://esneider.github.io/files/index.html?id=' + id);
         $('#the_link').text('Click here');
@@ -15,5 +14,8 @@ $(document).ready(function() {
         console.log('Received a new connection');
     });
 
-    console.log('Got id=' + $.url().param('id'));
+    if (typeof peer_id !== 'undefined') {
+
+        console.log('Got id = ' + peer_id);
+    }
 });
