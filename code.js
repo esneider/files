@@ -16,6 +16,6 @@ $(document).ready(function() {
 
     if (typeof peer_id !== 'undefined') {
 
-        console.log('Got id = ' + peer_id);
+        var conn = peer.connect(peer_id);
     }
 });
