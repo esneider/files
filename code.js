@@ -1,19 +1,16 @@
-function server_peer() {
-
-    var peer = new Peer({key: 'lwjd5qra8257b9'});
-
-    peer.on('error', function(err) {
-
-        console.log('(client_peer) Damnation! ' + err.type);
-    });
+function server_peer(peer) {
 
     peer.on('open', function(id) {
+
+        console.log("I'm a peer");
 
         $('#the_link').prop('href', 'http://esneider.github.io/files/index.html?sid=' + id);
         $('#the_link').text('Click here');
     });
 
     peer.on('connection', function(conn) {
+
+        console.log('Received a connection');
 
         var client_id = conn.peer;
 
@@ -28,22 +25,20 @@ function server_peer() {
     });
 }
 
-function client_peer(server_id) {
+function client_peer(peer, server_id) {
 
-    var peer = new Peer({key: 'lwjd5qra8257b9'});
     var conn = peer.connect(server_id);
 
     conn.on('open', function() {
 
+        console.log("I'm a peer");
+
         conn.destroy();
     });
 
-    peer.on('error', function(err) {
-
-        console.log('(client_peer) Damnation! ' + err.type);
-    });
-
     peer.on('connection', function(conn) {
+
+        console.log('Received a connection');
 
         conn.on('data', function(data) {
 
@@ -55,13 +50,23 @@ function client_peer(server_id) {
 $(document).ready(function() {
 
     var server_id = $.url().param('sid');
+    var peer = new Peer({key: 'lwjd5qra8257b9'});
+
+    peer.on('error', function(err) {
+
+        console.log('Damnation! ' + err.type);
+    });
 
     if (typeof server_id === undefined) {
 
-        server_peer();
+        console.log("I'm a server");
+
+        server_peer(peer);
 
     } else {
 
-        client_peer(server_id);
+        console.log("I'm a client");
+
+        client_peer(peer, server_id);
     }
 });
