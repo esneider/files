@@ -15,9 +15,12 @@ $(document).ready(function() {
 
             console.log('Received a new connection');
 
-            // while (true) {
-                conn.send('Hello world!');
-            // }
+            conn.on('data', function(data) {
+
+                console.log('Received:', data);
+            });
+
+            conn.send('Hello world form server');
         });
 
     } else {
@@ -32,6 +35,8 @@ $(document).ready(function() {
 
                 console.log('Received:', data);
             });
+
+            conn.send('Hello world from client');
         });
     }
 });
