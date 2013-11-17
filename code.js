@@ -14,14 +14,19 @@ function server_peer(peer) {
 
         var client_id = conn.peer;
 
-        conn.destroy();
+        conn.close();
 
-        var conn2 = peer.connect(client_id);
+        conn = peer.connect(client_id);
 
-        conn2.on('open', function() {
+        conn.on('open', function() {
 
-            conn2.send('Hey there! :)');
+            conn.send('Hey there! :)');
         });
+
+        conn.on('error', function(err) {
+
+            console.log('Double damnation! ' + err.type);
+        })
     });
 }
 
@@ -31,9 +36,9 @@ function client_peer(peer, server_id) {
 
     conn.on('open', function() {
 
-        console.log("I'm a peer");
+        console.log("Poking server");
 
-        conn.destroy();
+        conn.close();
     });
 
     peer.on('connection', function(conn) {
@@ -44,6 +49,11 @@ function client_peer(peer, server_id) {
 
             console.log('Receiced:', data);
         });
+
+        conn.on('error', function(err) {
+
+            console.log('Double damnation! ' + err.type);
+        })
     });
 }
 
