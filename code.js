@@ -15,18 +15,10 @@ function server_peer(peer) {
         var client_id = conn.peer;
 
         conn.close();
-
         conn = peer.connect(client_id);
 
-        conn.on('open', function() {
-
-            conn.send('Hey there! :)');
-        });
-
-        conn.on('error', function(err) {
-
-            console.log('Double damnation! ' + err.type);
-        })
+        conn.on('open', function() { conn.send('Hey there! :)'); });
+        conn.on('error', function(err) { console.log('Double damnation! ' + err.type); })
     });
 }
 
@@ -34,25 +26,49 @@ function client_peer(peer, server_id) {
 
     var conn = peer.connect(server_id);
 
-    conn.on('open', function() {
-
-        console.log("Poking server");
-    });
+    conn.on('open', function() { console.log("Poking server"); });
 
     peer.on('connection', function(conn) {
 
-        console.log('Received a connection');
-
-        conn.on('data', function(data) {
-
-            console.log('Receiced:', data);
-        });
-
-        conn.on('error', function(err) {
-
-            console.log('Double damnation! ' + err.type);
-        })
+        conn.on('data', function(data) { console.log('Received:', data); });
+        conn.on('error', function(err) { console.log('Double damnation! ' + err.type); })
     });
+}
+
+function handleFileSelect(evnt) {
+
+    evnt.stopPropagation();
+    evnt.preventDefault();
+
+    var files = evnt.dataTransfer.files;
+    var output = [];
+
+    for (var i = 0, f; f = files[i]; i++) {
+
+        output.push('<li>',
+                        '<strong>', escape(f.name), '</strong> ',
+                        '(', f.type || 'n/a', ') - ',
+                        f.size, ' bytes, last modified: ',
+                        f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
+                    '</li>');
+    }
+
+    $('list').html('<ul>' + output.join('') + '</ul>');
+}
+
+function handleDragOver(evnt) {
+
+    evnt.stopPropagation();
+    evnt.preventDefault();
+    evnt.dataTransfer.dropEffect = 'copy';
+}
+
+function init_drop_zone() {
+
+    var $dropZone = $('#drop_zone');
+
+    $dropZone.on('dragover', handleDragOver);
+    $dropZone.on('drop', handleFileSelect);
 }
 
 $(document).ready(function() {
@@ -60,21 +76,18 @@ $(document).ready(function() {
     var server_id = $.url().param('sid');
     var peer = new Peer({key: 'lwjd5qra8257b9'});
 
-    peer.on('error', function(err) {
-
-        console.log('Damnation! ' + err.type);
-    });
+    peer.on('error', function(err) { console.log('Damnation! ' + err.type); });
 
     if (typeof server_id === 'undefined') {
 
         console.log("I'm a server");
-
+        init_drop_zone();
         server_peer(peer);
 
     } else {
 
         console.log("I'm a client");
-
         client_peer(peer, server_id);
     }
 });
+
