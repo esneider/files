@@ -1,12 +1,18 @@
+function create_link(id) {
+
+    console.log("I'm a peer");
+
+    $('#the_link').prop('href', 'http://esneider.github.io/files/index.html?sid=' + id);
+    $('#the_link').text('Click here');
+}
+
 function server_peer(peer) {
 
-    peer.on('open', function(id) {
-
-        console.log("I'm a peer");
-
-        $('#the_link').prop('href', 'http://esneider.github.io/files/index.html?sid=' + id);
-        $('#the_link').text('Click here');
-    });
+    if (!peer.open) {
+        peer.on('open', create_link);
+    } else {
+        create_link(peer.id);
+    }
 
     peer.on('connection', function(conn) {
 
@@ -14,7 +20,7 @@ function server_peer(peer) {
 
         var client_id = conn.peer;
 
-        conn.destroy();
+        // conn.destroy();
 
         var conn2 = peer.connect(client_id);
 
@@ -33,7 +39,7 @@ function client_peer(peer, server_id) {
 
         console.log("I'm a peer");
 
-        conn.destroy();
+        // conn.destroy();
     });
 
     peer.on('connection', function(conn) {
