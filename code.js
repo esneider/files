@@ -46,18 +46,14 @@ function handleFileSelect(evnt) {
     for (var i = 0, f; f = files[i]; i++) {
 
         output.push('<li>',
-                        '<strong>', escape(f.name), '</strong> ',
+                        '<strong>', $('<div/>').text(f.name).html(), '</strong> ',
                         '(', f.type || 'n/a', ') - ',
                         f.size, ' bytes, last modified: ',
                         f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
                     '</li>');
     }
 
-    console.log('selected');
-    console.log(files);
-    console.log(output);
-
-    $('list').html('<ul>' + output.join('') + '</ul>');
+    $('#file_list').html('<ul>' + output.join('') + '</ul>');
 }
 
 function handleDragOver(evnt) {
@@ -66,8 +62,6 @@ function handleDragOver(evnt) {
     evnt.preventDefault();
 
     evnt.originalEvent.dataTransfer.dropEffect = 'copy';
-
-    console.log(evnt.originalEvent.dataTransfer);
 }
 
 function init_drop_zone() {
