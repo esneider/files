@@ -39,6 +39,7 @@ function handleFileSelect(evnt) {
 
     evnt.stopPropagation();
     evnt.preventDefault();
+    console.log(evnt);
 
     var files = evnt.dataTransfer.files;
     var output = [];
@@ -60,6 +61,7 @@ function handleDragOver(evnt) {
 
     evnt.stopPropagation();
     evnt.preventDefault();
+    console.log(evnt);
     evnt.dataTransfer.dropEffect = 'copy';
 }
 
