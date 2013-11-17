@@ -15,9 +15,9 @@ $(document).ready(function() {
 
             console.log('Received a new connection');
 
-            while (true) {
+            // while (true) {
                 conn.send('Hello world!');
-            }
+            // }
         });
 
     } else {
