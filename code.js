@@ -10,11 +10,11 @@ function server_peer(peer) {
 
     console.log(peer.open);
 
-    if (!peer.open) {
+    // if (!peer.open) {
         peer.on('open', create_link);
-    } else {
-        create_link(peer.id);
-    }
+    // } else {
+        // create_link(peer.id);
+    // }
 
     peer.on('connection', function(conn) {
 
@@ -65,7 +65,7 @@ $(document).ready(function() {
         console.log('Damnation! ' + err.type);
     });
 
-    if (typeof server_id === undefined) {
+    if (typeof server_id === 'undefined') {
 
         console.log("I'm a server");
 
