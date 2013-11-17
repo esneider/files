@@ -1,0 +1,18 @@
+#files {
+    width: 600px;
+    display: block;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+#drop_zone {
+    border: 2px dashed #bbb;
+    padding: 25px;
+    text-align: center;
+    font: 20pt bold 'Vollkorn';
+    color: #bbb;
+}
+
+#list {
+    display: inline;
+}
