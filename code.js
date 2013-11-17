@@ -39,9 +39,8 @@ function handleFileSelect(evnt) {
 
     evnt.stopPropagation();
     evnt.preventDefault();
-    console.log(evnt);
 
-    var files = evnt.dataTransfer.files;
+    var files = evnt.originalEvent.dataTransfer.files;
     var output = [];
 
     for (var i = 0, f; f = files[i]; i++) {
@@ -61,8 +60,7 @@ function handleDragOver(evnt) {
 
     evnt.stopPropagation();
     evnt.preventDefault();
-    console.log(evnt);
-    evnt.dataTransfer.dropEffect = 'copy';
+    evnt.originalEvent.dataTransfer.dropEffect = 'copy';
 }
 
 function init_drop_zone() {
