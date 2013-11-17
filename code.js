@@ -1,6 +1,7 @@
 $(document).ready(function() {
 
-    var peer_id = $.url().param('id');
+    var server_id = $.url().param('id');
+    var client_id = undefined;
     var peer = new Peer({key: 'lwjd5qra8257b9'});
 
     peer.on('error', function(err) {
@@ -10,15 +11,19 @@ $(document).ready(function() {
 
     peer.on('open', function(id) {
 
+        client_id = id;
+
         $('#the_link').prop('href', 'http://esneider.github.io/files/index.html?id=' + id);
         $('#the_link').text('Click here');
     });
 
-    if (typeof peer_id === 'undefined') {
+    if (typeof server_id === 'undefined') {
 
         peer.on('connection', function(conn) {
 
             console.log('Received a new connection');
+
+            console.log(conn);
 
             conn.on('data', function(data) {
 
@@ -30,7 +35,7 @@ $(document).ready(function() {
 
     } else {
 
-        var conn = peer.connect(peer_id);
+        var conn = peer.connect(server_id);
 
         conn.on('open', function() {
 
