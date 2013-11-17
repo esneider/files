@@ -37,8 +37,6 @@ function client_peer(peer, server_id) {
     conn.on('open', function() {
 
         console.log("Poking server");
-
-        conn.close();
     });
 
     peer.on('connection', function(conn) {
