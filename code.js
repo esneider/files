@@ -24,6 +24,8 @@ $(document).ready(function() {
 
         conn.on('open', function() {
 
+            console.log('Opened connection');
+
             conn.on('data', function(data) {
 
                 console.log('Received:', data);
