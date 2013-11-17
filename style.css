@@ -1,4 +1,4 @@
-#files {
+#upload_files {
     width: 600px;
     display: block;
     padding: 10px;
@@ -13,6 +13,11 @@
     color: #bbb;
 }
 
-#list {
+#file_list {
     display: inline;
+}
+
+#the_link {
+    margin: 30px;
+    font: 20pt bold 'Vollkorn';
 }

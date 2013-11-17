@@ -53,6 +53,10 @@ function handleFileSelect(evnt) {
                     '</li>');
     }
 
+    console.log('selected');
+    console.log(files);
+    console.log(output);
+
     $('list').html('<ul>' + output.join('') + '</ul>');
 }
 
@@ -60,7 +64,10 @@ function handleDragOver(evnt) {
 
     evnt.stopPropagation();
     evnt.preventDefault();
+
     evnt.originalEvent.dataTransfer.dropEffect = 'copy';
+
+    console.log(evnt.originalEvent.dataTransfer);
 }
 
 function init_drop_zone() {
