@@ -8,6 +8,8 @@ function create_link(id) {
 
 function server_peer(peer) {
 
+    console.log(peer.open);
+
     if (!peer.open) {
         peer.on('open', create_link);
     } else {
