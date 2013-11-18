@@ -24,5 +24,22 @@
 }
 
 .file_item {
-    width: 100%;
+    list-style-type: none;
+    margin: 3px 0;
+    padding: 5px 15px;
+    border-radius: 7px;
+    background: #8be;
+}
+
+.file_item:hover {
+    background: #9cf;
+}
+
+.file_item .name {
+    font-weight: bold;
+    float: left;
+}
+
+.file_item .type {
+    color: #666;
 }
