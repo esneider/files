@@ -40,7 +40,7 @@
 }
 
 .file_item .type {
-    color: #666;
+    color: #777;
     margin-left: 5px;
 }
 
@@ -50,7 +50,7 @@
 
 .file_item .size:after {
     content: "\00d7";
-    background-color: #8be;
+    background-color: #90c3f7;
     color: #777;
     font-weight: bold;
     position: relative;
