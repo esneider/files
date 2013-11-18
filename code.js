@@ -59,7 +59,12 @@ function handleFileSelect(evnt) {
     evnt.stopPropagation();
     evnt.preventDefault();
 
+    console.log(file_list);
+    console.log(evnt.originalEvent.dataTransfer.files);
+
     file_list.concat(evnt.originalEvent.dataTransfer.files);
+
+    console.log(file_list);
 
     update_file_list(file_list);
 }
