@@ -42,17 +42,23 @@ function client_peer(peer, server_id) {
 
             console.log('Received:', data);
 
-            if (data instanceof ArrayBuffer) {
+            if (data instanceof Array) {
 
-                console.log("ArrayBuffer!");
+                for (var i = 0; i < data.length; i++) {
 
-                var blob = new Blob([data]);
-                var url = window.URL.createObjectURL(blob);
+                    if (data[i] instanceof ArrayBuffer) {
 
-                $('#the_link').attr('href', url);
-                $('#the_link').text('Download');
-                $('#the_link').attr('download', 'my_file.txt');
-                $('#the_link').attr('draggable', 'true');
+                        console.log("ArrayBuffer!");
+
+                        var blob = new Blob([data[i]]);
+                        var url = window.URL.createObjectURL(blob);
+
+                        $('#the_link').attr('href', url);
+                        $('#the_link').text('Download');
+                        $('#the_link').attr('download', 'my_file.txt');
+                        $('#the_link').attr('draggable', 'true');
+                    }
+                }
             }
         });
     });
