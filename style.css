@@ -49,8 +49,12 @@
 }
 
 .file_item .size:after {
-    content: "X";
-    background-color:yellow;
-    color:red;
-    font-weight:bold;
+    content: "×";
+    background-color: #8be;
+    color: #777;
+    font-weight: bold;
+    position: relative;
+    bottom: 1px;
+    margin-left: 10px;
+    padding: 0 5px 2px 5px;
 }
