@@ -37,9 +37,13 @@
 
 .file_item .name {
     font-weight: bold;
-    float: left;
 }
 
 .file_item .type {
     color: #666;
+    margin-left: 10px;
+}
+
+.file_item .size {
+    float: left;
 }
