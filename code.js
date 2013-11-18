@@ -1,3 +1,5 @@
+var file_list = []
+
 function create_link(id) {
 
     $('#the_link').prop('href', 'http://esneider.github.io/files/index.html?sid=' + id);
@@ -35,15 +37,11 @@ function client_peer(peer, server_id) {
     });
 }
 
-function handleFileSelect(evnt) {
+function update_file_list(list) {
 
-    evnt.stopPropagation();
-    evnt.preventDefault();
-
-    var files = evnt.originalEvent.dataTransfer.files;
     var output = [];
 
-    for (var i = 0, f; f = files[i]; i++) {
+    for (var i = 0, f; f = list[i]; i++) {
 
         output.push('<li>',
                         '<strong>', $('<div/>').text(f.name).html(), '</strong> ',
@@ -54,6 +52,16 @@ function handleFileSelect(evnt) {
     }
 
     $('#file_list').html('<ul>' + output.join('') + '</ul>');
+}
+
+function handleFileSelect(evnt) {
+
+    evnt.stopPropagation();
+    evnt.preventDefault();
+
+    file_list.concat(evnt.originalEvent.dataTransfer.files);
+
+    update_file_list(file_list);
 }
 
 function handleDragOver(evnt) {
