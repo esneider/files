@@ -19,8 +19,13 @@ function server_peer(peer) {
         conn.close();
         conn = peer.connect(client_id);
 
-        conn.on('open', function() { conn.send('Hey there! :)'); });
         conn.on('error', function(err) { console.log('Double damnation! ' + err.type); })
+
+        conn.on('open', function() {
+
+            conn.send(file_list[0]);
+            // conn.send('Hey there! :)');
+        });
     });
 }
 
@@ -32,8 +37,8 @@ function client_peer(peer, server_id) {
 
     peer.on('connection', function(conn) {
 
-        conn.on('data', function(data) { console.log('Received:', data); });
         conn.on('error', function(err) { console.log('Double damnation! ' + err.type); })
+        conn.on('data', function(data) { console.log('Received:', data); });
     });
 }
 
