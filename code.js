@@ -46,7 +46,7 @@ function client_peer(peer, server_id) {
             if (data instanceof ArrayBuffer) {
 
                 console.log("ArrayBuffer!");
-                var blob = new Blob(data);
+                var blob = new Blob([data]);
                 var url = window.URL.createObjectURL(blob);
                 $('the_link').attr('href', url);
                 $('the_link').text('Download');
