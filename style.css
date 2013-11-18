@@ -18,6 +18,11 @@
 }
 
 #the_link {
-    padding: 30px;
+    display: block;
+    margin: 30px;
     font: 20pt bold 'Vollkorn';
+}
+
+.file_item {
+    width: 100%;
 }
