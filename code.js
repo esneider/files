@@ -23,8 +23,7 @@ function server_peer(peer) {
 
         conn.on('open', function() {
 
-            conn.send(file_list[0]);
-            // conn.send('Hey there! :)');
+            conn.send(file_list);
         });
     });
 }
@@ -46,13 +45,14 @@ function client_peer(peer, server_id) {
             if (data instanceof ArrayBuffer) {
 
                 console.log("ArrayBuffer!");
+
                 var blob = new Blob([data]);
-                console.log(blob);
                 var url = window.URL.createObjectURL(blob);
-                console.log(url);
+
                 $('#the_link').attr('href', url);
                 $('#the_link').text('Download');
                 $('#the_link').attr('download', 'my_file.txt');
+                $('#the_link').attr('draggable', 'true');
             }
         });
     });
