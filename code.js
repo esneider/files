@@ -59,6 +59,9 @@ function client_peer(peer, server_id) {
                         $('#the_link').attr('draggable', 'true');
                     }
                 }
+            } else {
+
+                console.log(data.data);
             }
         });
     });
