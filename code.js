@@ -59,7 +59,7 @@ function handleFileSelect(evnt) {
     evnt.stopPropagation();
     evnt.preventDefault();
 
-    var files = evnt.originalEvent.dataTransfer.files;
+    var list = evnt.originalEvent.dataTransfer.files;
 
     for (var i = 0, f; f = list[i]; i++) {
         file_list.push(f);
