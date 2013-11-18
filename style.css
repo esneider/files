@@ -41,9 +41,9 @@
 
 .file_item .type {
     color: #666;
-    margin-left: 10px;
+    margin-left: 5px;
 }
 
 .file_item .size {
-    float: left;
+    float: right;
 }
