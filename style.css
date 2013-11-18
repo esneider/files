@@ -50,12 +50,13 @@
 
 .file_item .size:after {
     content: "\00d7";
-    background-color: #90c3f7;
+    background-color: #7ad;
     color: #777;
     font-weight: bold;
     position: relative;
     bottom: 1px;
     margin-left: 10px;
+    margin-right: -5px;
     padding: 0 5px 2px 5px;
-    border-radius: 50px;
+    border-radius: 6px;
 }
