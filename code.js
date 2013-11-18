@@ -38,7 +38,20 @@ function client_peer(peer, server_id) {
     peer.on('connection', function(conn) {
 
         conn.on('error', function(err) { console.log('Double damnation! ' + err.type); })
-        conn.on('data', function(data) { console.log('Received:', data); });
+
+        conn.on('data', function(data) {
+
+            console.log('Received:', data);
+
+            if (data instanceof ArrayBuffer) {
+
+                console.log("ArrayBuffer!");
+                var blob = new Blob(data);
+                var url = window.URL.createObjectURL(blob);
+                $('the_link').attr('href', url);
+                $('the_link').text('Download');
+            }
+        });
     });
 }
 
